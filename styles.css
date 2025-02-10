@@ -57,9 +57,18 @@ header {
 .back-button {
     display: inline-block;
     margin-top: 20px;
-    padding: 10px 20px;
+    padding: 12px 24px;
     background: white;
     color: #52277E;
     text-decoration: none;
     border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease, color 0.3s ease;
 }
+
+.back-button:hover {
+    background: #ffdd57;
+    color: #52277E;
+    cursor: pointer;
+}
+
