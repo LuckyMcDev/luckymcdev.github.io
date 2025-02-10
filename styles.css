@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: #52277E; /* Updated Background Color */
+    background: #52277E;
     color: white;
     text-align: center;
 }
@@ -36,8 +36,30 @@ header {
     backdrop-filter: blur(10px);
     width: 250px;
     transition: transform 0.3s ease;
+    text-decoration: none;
+    color: white;
+    display: block;
 }
 
 .card:hover {
     transform: scale(1.05);
+}
+
+.content {
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: white;
+    color: #52277E;
+    text-decoration: none;
+    border-radius: 5px;
 }
