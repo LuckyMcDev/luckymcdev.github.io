@@ -1,33 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucky's Project Repo</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucky's Project Repo</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle linear infinite;
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      opacity: 0;
+      animation: shoot linear infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes shoot {
+      0% {
+        opacity: 0;
+        transform: translateX(0) translateY(0);
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(100vw) translateY(100vh);
+      }
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      animation: fade-in 2s ease-in;
+    }
+
+    header p {
+      font-size: 1.5rem;
+      margin: 10px 0 0;
+      animation: fade-in 2s ease-in;
+    }
+
+    @keyframes fade-in {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 1rem;
+    }
+    .sparkle {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkle 2s infinite;
+    }
+
+    @keyframes sparkle {
+    0%, 100% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+    }
+  </style>
 </head>
 <body>
+  <div class="stars" id="stars"></div>
+  <div class="shooting-stars" id="shooting-stars"></div>
 
-    <header>
-        <h1 class="fade-in">Welcome to Lucky's Project Site.</h1>
-        <p class="fade-in">Showcasing all my Projects</p>
-    </header>
+  <header>
+    <h1 class="fade-in">Welcome to Lucky's Project Site.</h1>
+    <p class="fade-in">Showcasing all my Projects</p>
+  </header>
 
-    <section class="cards">
-        <a href="projects/kube-hunters.html" class="card">
-            <h2>Kube Hunters</h2>
-            <p>My Minecraft modpack that uses only KubeJs as its Code.</p>
-        </a>
-        <a href="projects/bonk-bot.html" class="card">
-            <h2>Bonk Bot</h2>
-            <p>My custom Discord bot that hosts some code and allows for code sharing.</p>
-        </a>
-        <a href="projects/more-to-come.html" class="card">
-            <h2>More to come</h2>
-            <p>Always doing more coding since that's my passion.</p>
-        </a>
-    </section>
+  <section class="cards">
+    <a href="projects/kube-hunters.html" class="card">
+      <h2>Kube Hunters</h2>
+      <p>My Minecraft modpack that uses only KubeJs as its Code.</p>
+    </a>
+    <a href="projects/bonk-bot.html" class="card">
+      <h2>Bonk Bot</h2>
+      <p>My custom Discord bot that hosts some code and allows for code sharing.</p>
+    </a>
+    <a href="projects/more-to-come.html" class="card">
+      <h2>More to come</h2>
+      <p>Always doing more coding since that's my passion.</p>
+    </a>
+  </section>
 
-    <script src="script.js"></script>
+  <script>
+    // Generate random stars
+    const starsContainer = document.getElementById('stars');
+    const starCount = 200;
+
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.width = `${Math.random() * 3}px`;
+      star.style.height = star.style.width;
+      star.style.animationDuration = `${Math.random() * 3 + 1}s`;
+      starsContainer.appendChild(star);
+    }
+
+    // Generate shooting stars
+    const shootingStarsContainer = document.getElementById('shooting-stars');
+
+    function createShootingStar() {
+      const shootingStar = document.createElement('div');
+      shootingStar.classList.add('shooting-star');
+      shootingStar.style.top = `${Math.random() * 100}%`;
+      shootingStar.style.left = `${Math.random() * 100}%`;
+      shootingStar.style.animationDuration = `${Math.random() * 2 + 1}s`;
+      shootingStarsContainer.appendChild(shootingStar);
+
+      setTimeout(() => {
+        shootingStar.remove();
+      }, 3000); // Remove shooting star after animation
+    }
+
+    // Generate sparkly stars
+    const sparkleCount = 100; // Number of sparkly stars
+
+    for (let i = 0; i < sparkleCount; i++) {
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle');
+    sparkle.style.top = `${Math.random() * 100}%`;
+    sparkle.style.left = `${Math.random() * 100}%`;
+    sparkle.style.width = `${Math.random() * 2 + 1}px`;
+    sparkle.style.height = sparkle.style.width;
+    sparkle.style.animationDuration = `${Math.random() * 2 + 1}s`;
+    starsContainer.appendChild(sparkle);
+    }
+
+    setInterval(createShootingStar, 1000); // Create a shooting star every second
+  </script>
 </body>
 </html>
