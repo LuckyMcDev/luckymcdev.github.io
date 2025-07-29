@@ -1,219 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lucky's Project Repo</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-      color: white;
-      font-family: Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .stars {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: transparent;
-      overflow: hidden;
-      z-index: -1;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
 
-    .star {
-      position: absolute;
-      background: white;
-      border-radius: 50%;
-      animation: twinkle linear infinite;
-    }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
 
-    .shooting-star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      opacity: 0;
-      animation: shoot linear infinite;
-    }
+        .profile-section {
+            margin-bottom: 2.5rem;
+        }
 
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
-    }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
 
-    @keyframes shoot {
-      0% {
-        opacity: 0;
-        transform: translateX(0) translateY(0);
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-        transform: translateX(100vw) translateY(100vh);
-      }
-    }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-    header {
-      text-align: center;
-      padding: 20px;
-      position: relative;
-      z-index: 1;
-    }
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
 
-    header h1 {
-      font-size: 3rem;
-      margin: 0;
-      animation: fade-in 2s ease-in;
-    }
+        .bio {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
 
-    header p {
-      font-size: 1.5rem;
-      margin: 10px 0 0;
-      animation: fade-in 2s ease-in;
-    }
+        .links-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
 
-    @keyframes fade-in {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
+        .link-card {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: white;
+            border-radius: 15px;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
 
-    .cards {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px;
-      position: relative;
-      z-index: 1;
-    }
+        .link-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
 
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 10px;
-      padding: 20px;
-      width: 300px;
-      text-align: center;
-      text-decoration: none;
-      color: white;
-      transition: transform 0.3s ease, background 0.3s ease;
-    }
+        .link-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
 
-    .card:hover {
-      transform: scale(1.05);
-      background: rgba(255, 255, 255, 0.2);
-    }
+        .link-content {
+            flex: 1;
+            text-align: left;
+        }
 
-    .card h2 {
-      margin: 0 0 10px;
-      font-size: 1.5rem;
-    }
+        .link-title {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            font-size: 1.1rem;
+        }
 
-    .card p {
-      margin: 0;
-      font-size: 1rem;
-    }
-    .sparkle {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    opacity: 0;
-    animation: sparkle 2s infinite;
-    }
+        .link-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
 
-    @keyframes sparkle {
-    0%, 100% {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(1.5);
-        opacity: 1;
-    }
-    }
-  </style>
+        .github {
+            border-left: 4px solid #333;
+        }
+
+        .modrinth {
+            border-left: 4px solid #00AF5C;
+        }
+
+        .curseforge {
+            border-left: 4px solid #F16436;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="stars" id="stars"></div>
-  <div class="shooting-stars" id="shooting-stars"></div>
+<div class="container">
+    <div class="profile-section">
+        <div class="avatar">D</div>
+        <h1>LuckyMcDev</h1>
+        <p class="subtitle">Minecraft Mod Developer</p>
+        <p class="bio">
+            Someone who loves coding and making cool Minecraft mods in my free time.
+            Always working on a new Minecraft mod.
+        </p>
+    </div>
 
-  <header>
-    <h1 class="fade-in">Welcome to Lucky's Project Site.</h1>
-    <p class="fade-in">Showcasing all my Projects</p>
-  </header>
+    <div class="links-section">
+        <a href="https://github.com/luckymcdev" class="link-card github" target="_blank">
+            <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            <div class="link-content">
+                <div class="link-title">GitHub</div>
+                <div class="link-desc">View my code repositories and projects</div>
+            </div>
+        </a>
 
-  <section class="cards">
-    <a href="projects/kube-hunters.html" class="card">
-      <h2>Kube Hunters</h2>
-      <p>My Minecraft modpack that uses only KubeJs as its Code.</p>
-    </a>
-    <a href="projects/bonk-bot.html" class="card">
-      <h2>Bonk Bot</h2>
-      <p>My custom Discord bot that hosts some code and allows for code sharing.</p>
-    </a>
-    <a href="projects/more-to-come.html" class="card">
-      <h2>More to come</h2>
-      <p>Always doing more coding since that's my passion.</p>
-    </a>
-  </section>
+        <a href="https://modrinth.com/user/LuckyMcDev" class="link-card modrinth" target="_blank">
+            <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.252.004a11.78 11.768 0 0 0-8.92 3.73 11.78 11.768 0 0 0-2.17 12.545 11.78 11.768 0 0 0 8.907 7.621 11.78 11.768 0 0 0 12.547-2.169 11.78 11.768 0 0 0 1.735-14.942A11.78 11.768 0 0 0 12.252.004zm3.655 6.439a8.77 8.77 0 0 1-3.655 6.439 8.77 8.77 0 0 1-8.77-1.514 8.77 8.77 0 0 1-2.085-3.47 8.77 8.77 0 0 1 1.514-8.77 8.77 8.77 0 0 1 12.24 1.514 8.77 8.77 0 0 1 .756 5.801z"/>
+            </svg>
+            <div class="link-content">
+                <div class="link-title">Modrinth</div>
+                <div class="link-desc">Browse my Minecraft mods and datapacks</div>
+            </div>
+        </a>
 
-  <script>
-    // Generate random stars
-    const starsContainer = document.getElementById('stars');
-    const starCount = 200;
-
-    for (let i = 0; i < starCount; i++) {
-      const star = document.createElement('div');
-      star.classList.add('star');
-      star.style.top = `${Math.random() * 100}%`;
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.width = `${Math.random() * 3}px`;
-      star.style.height = star.style.width;
-      star.style.animationDuration = `${Math.random() * 3 + 1}s`;
-      starsContainer.appendChild(star);
-    }
-
-    // Generate shooting stars
-    const shootingStarsContainer = document.getElementById('shooting-stars');
-
-    function createShootingStar() {
-      const shootingStar = document.createElement('div');
-      shootingStar.classList.add('shooting-star');
-      shootingStar.style.top = `${Math.random() * 100}%`;
-      shootingStar.style.left = `${Math.random() * 100}%`;
-      shootingStar.style.animationDuration = `${Math.random() * 2 + 1}s`;
-      shootingStarsContainer.appendChild(shootingStar);
-
-      setTimeout(() => {
-        shootingStar.remove();
-      }, 3000); // Remove shooting star after animation
-    }
-
-    // Generate sparkly stars
-    const sparkleCount = 100; // Number of sparkly stars
-
-    for (let i = 0; i < sparkleCount; i++) {
-    const sparkle = document.createElement('div');
-    sparkle.classList.add('sparkle');
-    sparkle.style.top = `${Math.random() * 100}%`;
-    sparkle.style.left = `${Math.random() * 100}%`;
-    sparkle.style.width = `${Math.random() * 2 + 1}px`;
-    sparkle.style.height = sparkle.style.width;
-    sparkle.style.animationDuration = `${Math.random() * 2 + 1}s`;
-    starsContainer.appendChild(sparkle);
-    }
-
-    setInterval(createShootingStar, 1000); // Create a shooting star every second
-  </script>
+        <a href="https://www.curseforge.com/members/luckymcdev/projects" class="link-card curseforge" target="_blank">
+            <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.326 9.215c-.358-.885-1.353-1.419-2.238-1.419-1.243 0-2.239 1.006-2.239 2.249 0 1.243.996 2.249 2.239 2.249.885 0 1.88-.534 2.238-1.419h1.674c-.447 1.776-2.149 3.119-3.912 3.119-2.388 0-4.313-1.925-4.313-4.313s1.925-4.313 4.313-4.313c1.763 0 3.465 1.343 3.912 3.119h-1.674zm-12.652 0c.358-.885 1.353-1.419 2.238-1.419 1.243 0 2.239 1.006 2.239 2.249 0 1.243-.996 2.249-2.239 2.249-.885 0-1.88-.534-2.238-1.419H4C4.447 12.651 6.149 13.994 7.912 13.994c2.388 0 4.313-1.925 4.313-4.313S10.3 5.368 7.912 5.368c-1.763 0-3.465 1.343-3.912 3.119h1.674z"/>
+                <circle cx="12" cy="12" r="1.5"/>
+            </svg>
+            <div class="link-content">
+                <div class="link-title">CurseForge</div>
+                <div class="link-desc">Download my mods and modpacks</div>
+            </div>
+        </a>
+    </div>
+</div>
 </body>
 </html>
